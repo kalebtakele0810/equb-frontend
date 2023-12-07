@@ -1,0 +1,326 @@
+<head>
+    <title>Admin Panel</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="#">
+    <link rel="icon" th:href="@{~/uploadImage/Logo/Digital_Equb_Logo.ico}" type="image/x-icon">
+    <link th:href="@{~/files/assets/css/lib/bootstrap/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{~/https://fonts.googleapis.com/css?family=Open+Sans:400,600}" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" th:href="@{~/files/bower_components/bootstrap/css/bootstrap.min.css}">
+
+
+    <link rel="stylesheet" type="text/css" th:href="@{~/files/bower_components/datatables.net-bs4/css/dataTables.bootstrap4.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{~/files/assets/pages/data-table/css/buttons.dataTables.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{~/files/assets/css/default-css.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{~/files/assets/css/font-awesome.min.css}">
+
+
+
+
+    <link rel="stylesheet" type="text/css" th:href="@{~/files/assets/icon/icofont/css/icofont.css}">
+
+    <link rel="stylesheet" type="text/css" th:href="@{~/files/assets/icon/feather/css/feather.css}">
+
+    <link rel="stylesheet" type="text/css" th:href="@{~/files/assets/css/style.css}">
+
+
+    <link rel="stylesheet" type="text/css" th:href="@{~/files/assets/css/jquery.mCustomScrollbar.css}">
+
+    <link rel="stylesheet" th:href="@{~/popup_style.css}">
+</head>
+<body>
+
+<div class="theme-loader">
+    <div class="ball-scale">
+        <div class='contain'>
+            <div class="ring">
+                <div class="frame"></div>
+            </div>
+            <div class="ring">
+                <div class="frame"></div>
+            </div>
+            <div class="ring">
+                <div class="frame"></div>
+            </div>
+            <div class="ring">
+                <div class="frame"></div>
+            </div>
+            <div class="ring">
+                <div class="frame"></div>
+            </div>
+            <div class="ring">
+                <div class="frame"></div>
+            </div>
+            <div class="ring">
+                <div class="frame"></div>
+            </div>
+            <div class="ring">
+                <div class="frame"></div>
+            </div>
+            <div class="ring">
+                <div class="frame"></div>
+            </div>
+            <div class="ring">
+                <div class="frame"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="pcoded" class="pcoded">
+    <div class="pcoded-overlay-box"></div>
+    <div class="pcoded-container navbar-wrapper">
+        <nav class="navbar header-navbar pcoded-header">
+            <div class="navbar-wrapper">
+                <div class="navbar-logo">
+                    <a th:href="@{index}">
+                        <div class="text-center">
+                            <image class="profile-img" th:src="@{~/uploadImage/Logo/de_logo.jpg}" style="width: 25%"></image>
+                        </div>
+                    </a>
+                    <a class="mobile-options">
+                        <i class="feather icon-more-horizontal"></i>
+                    </a>
+                </div>
+                <div class="navbar-container container-fluid">
+                    <ul class="nav-left">
+                        <li class="header-search">
+                            <div class="main-search morphsearch-search">
+                                <div class="input-group">
+                                    <span class="input-group-addon search-close"><i class="feather icon-x"></i></span>
+                                    <input type="text" class="form-control">
+                                    <span class="input-group-addon search-btn"><i class="feather icon-search"></i></span>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <a th:href="@{#!}" onclick="javascript:toggleFullScreen()">
+                                <i class="feather icon-maximize full-screen"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav-right">
+                        <li class="header-notification">
+                            <div class="dropdown-primary dropdown">
+                                <div class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="feather icon-bell"></i>
+                                    <span class="badge bg-c-pink">5</span>
+                                </div>
+                                <ul class="show-notification notification-view dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                                    <li>
+                                        <h6>Notifications</h6>
+                                        <label class="label label-danger">New</label>
+                                    </li>
+                                    <li>
+                                        <div class="media">
+                                            <img class="d-flex align-self-center img-radius" th:src="@{~/files/assets/images/avatar-4.jpg}" alt="Generic placeholder image">
+                                            <div class="media-body">
+                                                <h5 class="notification-user">New Equb Payment has been made.</h5>
+                                                <p class="notification-msg">DE, Channel CBE - Amount 2000</p>
+                                                <span class="notification-time">2 minutes ago</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="header-notification" onclick="window.open('https://www.youtube.com/watch?v=UHQRX3VC8Us&t=2s&pp=ygUMZGlnaXRhbCBlcXVi','_newtab');">
+                            <div class="dropdown-primary dropdown">
+                                <div class="displayChatbox dropdown-toggle" data-toggle="dropdown">
+                                    <i class="feather icon-message-square"></i>
+                                    <span class="badge bg-c-green">3</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="user-profile header-notification" >
+                            <div class="dropdown-primary dropdown">
+                                <div class="dropdown-toggle" data-toggle="dropdown">
+                                    <img th:src="@{~/uploadImage/Profile/profile.jpg}" class="img-radius" alt="User-Profile-Image"/>
+                                    <span>Kaleb</span>
+                                    <i class="feather icon-chevron-down"></i>
+                                </div>
+                                <ul class="show-notification profile-notification dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                                    <li>
+                                        <!-- <a href="profile.php"> -->
+                                        <a href="#">
+                                            <i class="feather icon-user"></i> Profile
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <!-- <a href="changepassword.php"> -->
+                                        <a href="#">
+                                            <i class="feather icon-edit"></i> Change Password
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a th:href="@{logout}">
+                                            <i class="feather icon-log-out"></i> Logout
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+        <div class="pcoded-main-container">
+            <div class="pcoded-wrapper">
+                <nav class="pcoded-navbar">
+                    <div class="pcoded-inner-navbar main-menu">
+                        <div class="pcoded-navigatio-lavel">Portal</div>
+                        <ul class="pcoded-item pcoded-left-item">
+                            <li class="">
+                                <a th:href="@{index}">
+                                    <span class="pcoded-micon"><i class="feather icon-home"></i></span>
+                                    <span class="pcoded-mtext">Dashboard</span>
+                                </a>
+                            </li>
+                            <li class="pcoded-hasmenu">
+                                <!--                        <a th:href="@{javascript:void(0)}">-->
+                                <a th:href="@{#}">
+                                    <span class="pcoded-micon"><i class="feather icon-edit"></i></span>
+                                    <span class="pcoded-mtext">Equb</span>
+                                </a>
+                                <ul class="pcoded-submenu">
+                                    <li class="">
+                                        <a th:href="@{equb}">
+                                            <span class="pcoded-mtext">New Equb</span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a th:href="@{list-equb}">
+                                            <span class="pcoded-mtext">View Equb Status</span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a th:href="@{view-equb-subscription}">
+                                            <span class="pcoded-mtext">View Equb Joins</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="pcoded-hasmenu">
+                                <!--                        <a th:href="@{javascript:void(0)}">-->
+                                <a th:href="@{#}">
+                                    <span class="pcoded-micon"><i class="feather icon-user"></i></span>
+                                    <span class="pcoded-mtext">Equbtegnas</span>
+                                </a>
+                                <ul class="pcoded-submenu">
+                                    <li class="">
+                                        <a th:href="@{equbtegna}">
+                                            <span class="pcoded-mtext">New Equbtegna</span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a th:href="@{list-equbtegna}">
+                                            <span class="pcoded-mtext">List Equbtegnas</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="pcoded-hasmenu">
+                                <!--                        <a th:href="@{javascript:void(0)}">-->
+                                <a th:href="@{#}">
+                                    <span class="pcoded-micon"><i class="feather icon-user"></i></span>
+                                    <span class="pcoded-mtext">Payment</span>
+                                </a>
+                                <ul class="pcoded-submenu">
+                                    <li class="">
+                                        <a th:href="@{list-payments}">
+                                            <span class="pcoded-mtext">Latest Payments</span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a th:href="@{payment}">
+                                            <span class="pcoded-mtext">Process Payment Manually</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="pcoded-hasmenu">
+                                <!--                        <a th:href="@{javascript:void(0)}">-->
+                                <a th:href="@{#}">
+                                    <span class="pcoded-micon"><i class="feather icon-menu"></i></span>
+                                    <span class="pcoded-mtext">Service</span>
+                                </a>
+                                <ul class="pcoded-submenu">
+
+                                    <li class="pcoded-hasmenu">
+                                        <!--                        <a th:href="@{javascript:void(0)}">-->
+                                        <a th:href="@{#}">
+                                            <span class="pcoded-micon"><i class="feather icon-user"></i></span>
+                                            <span class="pcoded-mtext">Users</span>
+                                        </a>
+                                        <ul class="pcoded-submenu">
+                                            <li class="">
+                                                <a th:href="@{user}">
+                                                    <span class="pcoded-mtext">Add User</span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a th:href="@{list-users}">
+                                                    <span class="pcoded-mtext">View Users</span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <!--<a href="treatment.php"> -->
+                                                <a th:href="@{user-groups}">
+                                                    <span class="pcoded-mtext">Add User Groups</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+
+                                    <li class="pcoded-hasmenu">
+                                        <!--                        <a th:href="@{javascript:void(0)}">-->
+                                        <a th:href="@{#}">
+                                            <span class="pcoded-micon"><i class="feather icon-user"></i></span>
+                                            <span class="pcoded-mtext">Equb Types</span>
+                                        </a>
+                                        <ul class="pcoded-submenu">
+                                            <li class="">
+                                                <a th:href="@{equb-type}">
+                                                    <span class="pcoded-mtext">Add Equb Types</span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a th:href="@{list-equb-type}">
+                                                    <span class="pcoded-mtext">List Equb Types</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+
+                                    <li class="pcoded-hasmenu">
+                                        <!--                        <a th:href="@{javascript:void(0)}">-->
+                                        <a th:href="@{#}">
+                                            <span class="pcoded-micon"><i class="feather icon-user"></i></span>
+                                            <span class="pcoded-mtext">Equb Categories</span>
+                                        </a>
+                                        <ul class="pcoded-submenu">
+                                            <li class="">
+                                                <a th:href="@{equb-category}">
+                                                    <span class="pcoded-mtext">Add Equb Category</span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a th:href="@{list-equb-category}">
+                                                    <span class="pcoded-mtext">List Equb Category</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a th:href="@{logout}">
+                                    <i class="feather icon-log-out"></i> Logout
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+</nav>

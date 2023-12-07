@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org/" lang="en">
+<div th:insert="header">...</div>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<div class="pcoded-content">
+    <div class="pcoded-inner-content">
+        <div class="main-body">
+            <div class="page-wrapper full-calender">
+                <div class="page-body">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 th:text="${equbtegna.payload.firstName+' '+equbtegna.payload.lastName}"></h2>
+                        </div>
+                        <div class="card-block">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <!-- Nav tabs -->
+                                    <ul class="nav nav-tabs md-tabs tabs-left b-none" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" data-toggle="tab" href="#profile" role="tab">Basic Profile</a>
+                                            <div class="slide"></div>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" data-toggle="tab" href="#equbs" role="tab">Joined Equbs</a>
+                                            <div class="slide"></div>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" data-toggle="tab" href="#payments" role="tab">Payments</a>
+                                            <div class="slide"></div>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" data-toggle="tab" href="#make_payment" role="tab">Add Payment</a>
+                                            <div class="slide"></div>
+                                        </li>
+                                    </ul>
+                                    <!-- Tab panes -->
+                                    <div class="tab-content tabs-left-content card-block">
+                                        <div class="tab-pane active" id="profile" role="tabpanel">
+<!--                                            <p class="m-0"> -->
+                                            <div class="table-responsive dt-responsive">
+                                                <Strong>Name</Strong> - <span th:text="${equbtegna.payload.firstName+' '+equbtegna.payload.lastName}"></span><br>
+                                                <Strong>Number</Strong> - <span th:text="${equbtegna.payload.msisdn}"></span><br>
+                                                <Strong>Age</Strong> - <span th:text="${equbtegna.payload.age}"></span><br>
+                                                <Strong>Gender</Strong> - <span th:text="${equbtegna.payload.gender}"></span><br>
+                                                <Strong>Registration Date</Strong> - <span th:text="${equbtegna.payload.createdAt}"></span><br>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane" id="equbs" role="tabpanel">
+                                            <p class="m-0">
+                                            <div class="table-responsive dt-responsive">
+                                                <table id="dom-jqry" class="table table-striped table-bordered nowrap">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>Equb</th>
+                                                        <th>Joining Date</th>
+                                                        <th>Number of Time</th>
+                                                        <th>Sub-Group</th>
+                                                        <th>Status</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr th:each="equb: ${equbtegna.payload.startEqubs}">
+                                                        <td th:text="${equb.id}"></td>
+                                                        <td th:text="${equb.joinedDate}"></td>
+                                                        <td th:text="${equb.numberOfTimes}"></td>
+                                                        <td th:text="${equb.subGroup}"></td>
+                                                        <td th:text="${equb.status}"></td>
+                                                    </tr>
+                                                    </tbody>
+                                                    <tfoot>
+                                                    <tr>
+                                                        <th>Equb</th>
+                                                        <th>Joining Date</th>
+                                                        <th>Number of Time</th>
+                                                        <th>Sub-Group</th>
+                                                        <th>Status</th>
+                                                    </tr>
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+                                            </p>
+                                        </div>
+                                        <div class="tab-pane" id="payments" role="tabpanel">
+                                            <p class="m-0">
+                                            <div class="table-responsive dt-responsive">
+                                            <table id="dom-jqry" class="table table-striped table-bordered nowrap">
+                                                <thead>
+                                                <tr>
+
+                                                    <th>Payment Status</th>
+                                                    <th>Equb Type Details</th>
+                                                    <th>Transaction</th>
+                                                    <th>Channel</th>
+                                                    <th>Amount</th>
+                                                    <th>Date</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr th:each="payment: ${latestPayments.payments}">
+                                                    <td th:text="${payment.payment.status}"></td>
+                                                    <td th:text="${payment.EqubType}"></td>
+                                                    <td th:text="${payment.payment.transactionId}"></td>
+                                                    <td th:text="${payment.payment.channel}"></td>
+                                                    <td th:text="${payment.payment.amount}"></td>
+                                                    <td th:text="${payment.payment.updatedAt}"></td>
+                                                </tr>
+                                                </tbody>
+                                                <tfoot>
+                                                <tr>
+                                                    <th>Payment Status</th>
+                                                    <th>Equb Type Details</th>
+                                                    <th>Transaction</th>
+                                                    <th>Channel</th>
+                                                    <th>Amount</th>
+                                                    <th>Date</th>
+                                                </tr>
+                                                </tfoot>
+                                            </table>
+                                            </div>
+                                            </p>
+                                        </div>
+                                        <div class="tab-pane" id="make_payment" role="tabpanel">
+                                            <p class="m-0">
+                                            <form id="main" method="POST" th:action="@{/payment-form}" th:object="${payment}" enctype="multipart/form-data">
+                                                <div class="form-group row">
+                                                    <label class="col-4 col-form-label">Customer Number</label>
+                                                    <div class="col-8">
+                                                        <input type="text" class="form-control" th:field="*{Identifier}"
+                                                               value="${Identifier}" readonly>
+                                                        <span class="messages"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-4 col-form-label">Equb</label>
+                                                    <div class="col-8">
+                                                        <select th:field="*{EqubId}" class="form-control" required="">
+                                                            <option value="">-- Select One -- </option>
+                                                            <option th:each="equb: ${latestEqubs.payload}" th:value="${equb.id}" th:text="${equb.name}">
+
+                                                            </option>
+
+                                                        </select>
+                                                        <span class="messages"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-4 col-form-label">Channel</label>
+                                                    <div class="col-8">
+                                                        <select th:field="*{Channel}" class="form-control" required="">
+                                                            <option value="">-- Select One -- </option>
+                                                            <option value="CBE">CBE</option>
+                                                            <option value="TELEBIRR">TELEBIRR</option>
+                                                        </select>
+                                                        <span class="messages"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-4 col-form-label">Amount</label>
+                                                    <div class="col-8">
+                                                        <input type="number" class="form-control" th:field="*{Amount}"
+                                                               value="">
+                                                        <span class="messages"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-4 col-form-label">Transaction Number</label>
+                                                    <div class="col-8">
+                                                        <input type="text" class="form-control" th:field="*{TransactionId}"
+                                                               value="">
+                                                        <span class="messages"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-4 col-form-label">Status</label>
+                                                    <div class="col-8">
+                                                        <select th:field="*{Status}" class="form-control" required="">
+                                                            <option value="">-- Select One -- </option>
+                                                            <option value="DEPOSIT">DEPOSIT</option>
+                                                            <option value="WITHDRAWAL">WITHDRAWAL</option>
+                                                        </select>
+                                                        <span class="messages"></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-sm-2"></label>
+                                                    <div class="col-sm-10">
+                                                        <button type="submit" name="btn_submit" class="btn btn-primary m-b-0">Submit</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div th:insert="footer :: .footer">...</div>
+<!--<?php include('footer.php');?>-->
+
+<!-- End footer -->
+</div>
+<!-- End Page wrapper  -->
+</div>
+
+
+
+<script type="text/javascript" th:src="@{~/files/bower_components/jquery/js/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{~/files/bower_components/jquery-ui/js/jquery-ui.min.js}"></script>
+
+<script type="text/javascript" th:src="@{~/files/bower_components/popper.js/js/popper.min.js}"></script>
+<script type="text/javascript" th:src="@{~/files/bower_components/bootstrap/js/bootstrap.min.js}"></script>
+
+
+
+
+<script th:src="@{~/files/bower_components/datatables.net/js/jquery.dataTables.min.js}"></script>
+
+
+
+<script th:src="@{~/files/bower_components/datatables.net-bs4/js/dataTables.bootstrap4.min.js}"></script>
+<script th:src="@{~/files/bower_components/datatables.net-responsive/js/dataTables.responsive.min.js}"></script>
+<script th:src="@{~/files/bower_components/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js}"></script>
+
+<script th:src="@{~/files/assets/pages/data-table/js/data-table-custom.js}"></script>
+
+
+<script th:src="@{~/files/assets/js/pcoded.min.js}"></script>
+
+<script th:src="@{~/files/assets/js/vartical-layout.min.js}"></script>
+<script th:src="@{~/files/assets/js/jquery.mCustomScrollbar.concat.min.js}"></script>
+<script th:src="@{~/files/assets/js/jquery.mousewheel.min.js}"></script>
+
+<script type="text/javascript" th:src="@{~/files/assets/js/script.min.js}"></script>
+<script type="text/javascript" th:src="@{~/files/assets/js/script.js}"></script>
+
+<script th:src="@{~/https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.0.4/popper.js}"></script>
+
+
+</body>
+
+
+</html>
+
+
+
+
+<link rel="stylesheet" th:href="@{~/files/bower_components/chartist/css/chartist.css}" type="text/css" media="all">
+<!-- Chartlist charts -->
+<script th:src="@{~/files/bower_components/chartist/js/chartist.js}"></script>
+<script th:src="@{~/files/assets/pages/chart/chartlist/js/chartist-plugin-threshold.js}"></script>
